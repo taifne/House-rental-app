@@ -1,44 +1,37 @@
-const reservationModel = require("../../models/reservationModel");
-const houseModel = require("../../models/hostModel");
-const VIEW = require("../../constants/viewName")
+const ReservationModel = require("../../models/reservation.model");
+const HouseModel = require("../../models/host.model");
+const VIEW = require("../../constants/viewName");
+const paypal = require("paypal-rest-sdk");
+
 class ReservationController {
   async getUserReservation(req, res, next) {
-    let logged;
-    let fre_checking_house_list, checking_house_list, checked_house_list;
-    if (req.cookies.token) {
-      logged = true;
+    try {
+      let logged = req.cookies.token ? true : false;
+      let user_name = req.cookies.username;
+      let user_email = req.cookies.email;
+      let user_phone = req.cookies.phone;
+      let user_avatar = req.cookies.avatar;
+      let user_reservation_list = await ReservationModel.find({ cus: req.cookies.id }).populate(["room", "host"]).lean();
+      let fre_checking_house_list = user_reservation_list.filter((item) => item.start.getTime() > Date.now());
+      let checking_house_list = user_reservation_list.filter((item) => item.start.getTime() < Date.now() && item.end.getTime() > Date.now());
+      let checked_house_list = user_reservation_list.filter((item) => item.end.getTime() < Date.now());
+      res.render(VIEW.USER_RESERVATION_PAGE, {
+        fre_checking_house_list,
+        checking_house_list,
+        checked_house_list,
+        user_name,
+        user_email,
+        user_phone,
+        user_avatar,
+        user_reservation_list,
+        islogged: logged,
+        hideNavigation: true
+      });
+    } catch (error) {
+      next(error);
     }
-    else {
-      logged = false;
-    }
-    let user_name = req.cookies.username;
-    let user_email = req.cookies.email;
-    let user_phone = req.cookies.phone;
-    let user_avatar = req.cookies.avatar;
-    let user_reservation_list = await reservationModel.find({ cus: req.cookies.id }).populate(["room", "host"]).lean()
-    fre_checking_house_list = user_reservation_list.filter((item) => {
-      return item.start.getTime() > Date.now()
-    })
-    checking_house_list = user_reservation_list.filter((item) => {
-      return (item.start.getTime() < Date.now() && item.end.getTime() > Date.now())
-    })
-    checked_house_list = user_reservation_list.filter((item) => {
-      return item.end.getTime() < Date.now()
-    })
-    res.render(VIEW.USER_RESERVATION_PAGE, {
-      fre_checking_house_list,
-      checking_house_list,
-      checked_house_list,
-      user_name,
-      user_email,
-      user_phone,
-      user_avatar,
-      user_reservation_list,
-      islogged: logged,
-      hideNavigation: true
-    });
-
   }
+
   payment(req, res, next) {
 
     const value = req.body.final;

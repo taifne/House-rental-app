@@ -1,13 +1,21 @@
 const appConstants = require("../../constants/appConstants");
-const UserModel = require("../../models/userModel");
+const UserModel = require("../../models/user.model");
 const View = require("../../constants/viewName")
 const ROLE=require("../../constants/role")
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 class ResisterController {
+  /**
+ * GET /register
+ * Register page.
+ */
   index(req, res, next) {
     res.render(View.REGISTER_PAGE, { hideNavigation: true, });
   }
+  /**
+ * POST /register
+ * Check if email exists.
+ */
   async checkEmailExist(req, res, next) {
     UserModel.countDocuments({ email: req.body.email }, function (err, count) {
       if (count > 0) {
@@ -25,6 +33,10 @@ class ResisterController {
 
   }
 
+  /**
+ * POST /register
+ * Register user.
+ */
   load(req, res, next) {
     const pw = req.body.password;
     const role = (req.body.email === "bothofuscando@gmail.com") ? ROLE.ADMIN : ROLE.USER;

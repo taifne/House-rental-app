@@ -3,7 +3,7 @@
 
     <div class="room-types-wrapper p-1" style="z-index: 1000;">
 
-      {{#each e}}
+      {{#each house_category_list}}
       <form style="width: 80px; " class="p-0 m-1 opacity-50  h-100 " method="get" class="room-type" action="/">
         <input type="text" value={{this._id}} name="type" style="display: none;">
         <button type="submit" class="w-100 h-50  border-0 d-flex justify-content-center bg-transparent opacity-50">

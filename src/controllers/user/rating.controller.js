@@ -1,7 +1,5 @@
 
-const ratingModel = require("../../models/ratingModel");
-
-
+const ratingModel = require("../../models/rate.model");
 class RatingController {
   addComment(req, res, next) {
     ratingModel.findOne({ owner: req.cookies.user_id, room: req.body.room }).then((item) => {

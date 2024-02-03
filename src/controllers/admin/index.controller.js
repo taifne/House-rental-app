@@ -1,7 +1,7 @@
 
-const reservationModel = require("../../models/reservationModel");
-const userModel = require("../../models/userModel");
-const houseModel = require("../../models/houseModel");
+const reservationModel = require("../../models/reservation.model");
+const userModel = require("../../models/user.model");
+const houseModel = require("../../models/house.model");
 const moment = require("moment/moment");
 const VIEW=require("../../constants/viewName");
 const ROLE=require("../../constants/role")

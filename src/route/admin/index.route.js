@@ -1,6 +1,6 @@
 const express = require("express");
 const Route = express.Router();
-const AdminController = require("../../controllers/admin/indexController");
+const AdminController = require("../../controllers/admin/index.controller");
 
 Route.get("/", AdminController.index);
 Route.get("/mostvisit", AdminController.mostvisit);

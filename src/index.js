@@ -14,10 +14,7 @@ const ConfigPaypal = require("../src/config/paypal");
 var cookieParser = require("cookie-parser");
 const session = require('express-session');
 const dotenv = require('dotenv')
-const client=require("../src/config/redis");
-client.on('error', err => console.log('Redis Client Error', err));
- client.connect().then(() =>{console.log('Client Connect')}).catch(err => console.log('err'));
-  
+const redisClient= require('./db/redis');
 dotenv.config();
 //configure paypal
 ConfigPaypal.config();
@@ -77,5 +74,6 @@ app.use(express.json());
 
 mongoose.set("strictQuery", false);
 db.connect();
+redisClient.connectToRedis();
 Route(app);
 server.listen(port);

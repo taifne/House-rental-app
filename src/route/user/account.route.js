@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const AccountController = require("../../controllers/user/AccountController");
+const AccountController = require("../../controllers/user/account.controller");
 router.post("/password", AccountController.sendPassword);
 router.get("/password",AccountController.getPassword);
 router.post("/user-name",AccountController.updatePersonalName); 

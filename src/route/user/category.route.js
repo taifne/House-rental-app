@@ -1,6 +1,6 @@
 const express = require("express");
 const Route = express.Router();
-const TypeController = require("../../controllers/user/houseCategoryController");
+const TypeController = require("../../controllers/user/category.controller");
 const cloudinary =require("../../config/cloudinary");
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
