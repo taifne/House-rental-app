@@ -5,7 +5,6 @@ const registerRoute = require("./user/registerRoute");
 const loginRoute = require("./user/loginRoute");
 const logoutRoute = require("./user/logoutRoute");
 const userRoute = require("./user/userRoute");
-
 const addType = require("./admin/addtype");
 const accountRoute = require("./user/accountRoute");
 const adminRoute = require("./admin/index.admin.route");
