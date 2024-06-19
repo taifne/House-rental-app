@@ -299,7 +299,7 @@ body {
         bottom: 50px;
         right: 70px;
         background-color: white;
-        border-radius: 15px;
+        border-radius: 5px;
         overflow: hidden;
         button {
           background-color: white;
@@ -308,17 +308,17 @@ body {
           font-weight: bolder;
         }
       }
-      width: 90%;
+      width: 96%;
       z-index: 1;
-      height: 500px;
+      height: 450px;
       overflow: hidden;
       display: grid;
-      border-radius: 20px;
+      border-radius:5px;
       background-color: white;
       grid-template-columns: 1fr 1fr 1fr 1fr;
       grid-template-rows: 1fr 1fr;
       gap: 1px;
-      margin-bottom: 40px;
+      margin-bottom: 10px;
       grid-template-areas:
         "img1 img1 img2 img3"
         "img1 img1 img4 img5";
@@ -386,18 +386,15 @@ body {
   }
   .float-container {
     width: 100%;
- 
     height: auto;
     position: relative;
- padding:50px;
+ padding:10px;
     display: flex;
     flex-direction: row-reverse;
     flex-direction: row;
     justify-content: start;
     align-items: center;
   &-payment {
-   
-  
    min-width: 350px;
     height: auto;
 

@@ -48,6 +48,11 @@ const roomSchema = new mongoose.Schema({
   address: {
     type: String
   },
+  map:{
+    lat: {type:Number},
+    lng: {type:Number}
+  },
+
   isRented:{
     type: Boolean
   },
